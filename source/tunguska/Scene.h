@@ -21,12 +21,20 @@ public:
 	Renderer* Renderer;
 	ResourceManager* ResourceManager;
 
+	glm::vec2 OurPosition;
+
 	std::vector<Entity*> Entities;
+	std::vector<glm::vec2*> Contacts;
+	glm::vec2 firstcontact;
+	glm::vec2 secondcontact;
 
 	Switch RadarSwitch;
 	Switch SecondSwitch;
 
 	rdrcontact contac;
+
+	Sprite* radarscreen;
+	Sprite* radarcover;
 
 	Sprite* rdr;
 	Sprite* testcontact;

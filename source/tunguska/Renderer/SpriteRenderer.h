@@ -17,5 +17,6 @@ public:
 
 	void SetShader(class Shader* shader);
 
+	// TODO: begin() so we dont redundantly change state so much
 	void DrawSprite(Camera* camera, class Sprite* sprite);
 };
