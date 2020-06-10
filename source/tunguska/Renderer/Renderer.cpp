@@ -38,14 +38,16 @@ void Renderer::Initialize(ResourceManager* resourceManager)
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	SpriteRender = new SpriteRenderer();
-	SpriteRender->SetShader(resourceManager->LoadShader("sprite"));
+	spriteRenderer = new SpriteRenderer();
+	spriteRenderer->SetCamera(&Camera);
+	spriteRenderer->SetShader(resourceManager->LoadShader("sprite"));
+
+	renderTarget = new RenderTarget();
+	renderTarget->SetResolution(640, 360);
 }
 
 void Renderer::Shutdown()
 {
-	delete SpriteRender;
-	SpriteRender = nullptr;
 
 	SDL_GL_DeleteContext(Context);
 	SDL_DestroyWindow(Window);
@@ -53,7 +55,7 @@ void Renderer::Shutdown()
 
 void Renderer::Draw(Sprite* sprite)
 {
-	SpriteRenderQueue.push(sprite);
+	spriteRenderer->DrawSprite(sprite);
 }
 
 Camera* Renderer::GetCamera()
@@ -63,17 +65,18 @@ Camera* Renderer::GetCamera()
 
 void Renderer::RenderScene()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glBindFramebuffer(GL_FRAMEBUFFER, renderTarget->GetFramebufferObject());
+	glViewport(0, 0, 640, 360);
+	Clear();
+	spriteRenderer->Render();
 
-	while (!SpriteRenderQueue.empty())
-	{
-		Sprite* sprite = SpriteRenderQueue.front();
-		SpriteRenderQueue.pop();
 
-		SpriteRender->DrawSprite(&Camera, sprite);
-	}
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glViewport(0, 0, 1280, 720);
+	Clear();
+	spriteRenderer->DrawRenderTarget(renderTarget);
 
-	SDL_GL_SwapWindow(Window);
+	Present();
 }
 
 void Renderer::Clear()

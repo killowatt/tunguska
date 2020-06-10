@@ -4,7 +4,7 @@
 #include "glm/vec2.hpp"
 #include "glm/mat4x4.hpp"
 
-class Sprite : NonCopyable
+class Sprite 
 {
 	glm::mat4 Transform;
 	bool IsTransformDirty;
@@ -24,5 +24,4 @@ public:
 	int32 CurrentFrame;
 
 	class Texture* Texture;
-	class Shader* Shader;
 };

@@ -17,7 +17,7 @@ public:
 	Camera();
 
 	void SetPosition(glm::vec2 position);
-	void SetSize(glm::vec2 size);
+	void SetSize(glm::vec2 resolution);
 
 	glm::vec2 GetPosition();
 	glm::vec2 GetSize();

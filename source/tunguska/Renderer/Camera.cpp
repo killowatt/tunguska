@@ -16,10 +16,10 @@ void Camera::SetPosition(glm::vec2 position)
 	Position = position;
 }
 
-void Camera::SetSize(glm::vec2 size)
+void Camera::SetSize(glm::vec2 resolution)
 {
 	IsProjectionDirty = true;
-	Size = size;
+	Size = resolution;
 }
 
 glm::vec2 Camera::GetPosition() { return Position; }

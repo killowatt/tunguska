@@ -56,26 +56,71 @@ SpriteRenderer::~SpriteRenderer()
 	glDeleteVertexArrays(1, &VertexArray);
 }
 
+void SpriteRenderer::SetCamera(Camera* camera)
+{
+	SpriteCamera = camera;
+}
 void SpriteRenderer::SetShader(Shader* shader)
 {
 	SpriteShader = shader;
 }
 
-void SpriteRenderer::DrawSprite(Camera* camera, Sprite* sprite)
+void SpriteRenderer::Begin()
 {
-	Shader* shader = SpriteShader;
+
+}
+
+void SpriteRenderer::DrawSprite(Sprite* sprite)
+{
+	SpriteQueue.push(*sprite);
+}
+
+void SpriteRenderer::DrawRenderTarget(RenderTarget* renderTarget)
+{
 	glUseProgram(SpriteShader->ShaderProgram);
 
-	shader->SetMatrix("model", sprite->GetTransform());
-	shader->SetMatrix("projection", camera->GetProjection());
-	shader->SetMatrix("view", camera->GetView());
-	shader->SetInt("sprite", 0);
+	glm::mat4 model = glm::mat4(1.0f);
+	model = glm::scale(model, glm::vec3(2.0f, 2.0f, 1.0f));
+	model = glm::translate(model, glm::vec3(-0.5f, -0.5f, 0.0f));
+
+	SpriteShader->SetMatrix("projection", glm::mat4(1.0f));
+	SpriteShader->SetMatrix("view", glm::mat4(1.0f));
+	SpriteShader->SetMatrix("model", model);
+	SpriteShader->SetInt("sprite", 0);
 
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, sprite->Texture->GetTextureID());
+	glBindTexture(GL_TEXTURE_2D, renderTarget->GetTextureID());
 
 	glBindVertexArray(VertexArray);
+
 	glDrawArrays(GL_TRIANGLES, 0, 6);
+
+	glBindVertexArray(0);
+}
+
+void SpriteRenderer::Render()
+{
+	glUseProgram(SpriteShader->ShaderProgram);
+
+	SpriteShader->SetMatrix("projection", SpriteCamera->GetProjection());
+	SpriteShader->SetMatrix("view", SpriteCamera->GetView());
+	SpriteShader->SetInt("sprite", 0);
+
+	glBindVertexArray(VertexArray);
+
+	while (!SpriteQueue.empty())
+	{
+		Sprite* sprite = &SpriteQueue.front();
+
+		SpriteShader->SetMatrix("model", sprite->GetTransform());
+
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, sprite->Texture->GetTextureID());
+
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+
+		SpriteQueue.pop();
+	}
 
 	glBindVertexArray(0);
 }

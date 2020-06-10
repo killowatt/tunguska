@@ -7,7 +7,6 @@ Game::Game()
 	SDL_Init(SDL_INIT_VIDEO);
 
 	Renderer.Initialize(&ResourceSystem);
-	Renderer.GetCamera()->SetSize(glm::vec2(1280, 720));
 
 	CurrentScene = new Scene();
 	CurrentScene->Renderer = &Renderer;

@@ -2,6 +2,10 @@
 
 #include "Common.h"
 #include "Renderer/Camera.h"
+#include "Renderer/Shader.h"
+#include "Renderer/Sprite.h"
+#include "Renderer/RenderTarget.h"
+#include <queue>
 
 class SpriteRenderer : NonCopyable
 {
@@ -9,14 +13,20 @@ class SpriteRenderer : NonCopyable
 	uint32 VertexBuffer;
 	uint32 TextureCoordinate;
 
-	class Shader* SpriteShader;
+	Camera* SpriteCamera;
+	Shader* SpriteShader;
+
+	std::queue<Sprite> SpriteQueue;
 
 public:
 	SpriteRenderer();
 	~SpriteRenderer();
 
-	void SetShader(class Shader* shader);
+	void SetCamera(Camera* camera);
+	void SetShader(Shader* shader);
 
-	// TODO: begin() so we dont redundantly change state so much
-	void DrawSprite(Camera* camera, class Sprite* sprite);
+	void Begin();
+	void DrawSprite(Sprite* sprite);
+	void DrawRenderTarget(RenderTarget* renderTarget);
+	void Render();
 };

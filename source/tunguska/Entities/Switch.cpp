@@ -3,17 +3,17 @@
 
 void Switch::Initialize(ResourceManager* resourceManager)
 {
-	SwitchBase = resourceManager->LoadTexture("switchbase.png");
-	SwitchUp = resourceManager->LoadTexture("switchup.png");
-	SwitchDown = resourceManager->LoadTexture("switchdown.png");
+	SwitchBase = resourceManager->LoadTexture("switchbase2.png");
+	SwitchUp = resourceManager->LoadTexture("switchup2.png");
+	SwitchDown = resourceManager->LoadTexture("switchdown2.png");
 
 	Bruh.Position = Position;
-	Bruh.Size = glm::vec2(32, 64);
+	Bruh.Size = glm::vec2(7, 11);
 
-	Flicker.SetSize(32, 64);
+	Flicker.SetSize(7, 11);
 
 	Base.SetPosition(Position.x, Position.y);
-	Base.SetSize(32, 64);
+	Base.SetSize(7, 5);
 	Base.Texture = SwitchBase;
 
 	UpdateSwitchState();
@@ -48,12 +48,12 @@ void Switch::UpdateSwitchState()
 {
 	if (!State)
 	{
-		Flicker.SetPosition(Position.x, Position.y);
+		Flicker.SetPosition(Position.x, Position.y + 1);
 		Flicker.Texture = SwitchDown;
 	}
 	else if (State)
 	{
-		Flicker.SetPosition(Position.x, Position.y - (32));
+		Flicker.SetPosition(Position.x, Position.y - 7);
 		Flicker.Texture = SwitchUp;
 	}
 }

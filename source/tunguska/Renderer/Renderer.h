@@ -1,13 +1,10 @@
 #pragma once
 
-#include "SpriteRenderer.h"
-#include "Renderer/RenderTarget.h"
-#include "Camera.h"
-
-#include "SDL2/SDL.h"
 #include "Common.h"
-
-#include <queue>
+#include "Renderer/Camera.h"
+#include "Renderer/RenderTarget.h"
+#include "Renderer/SpriteRenderer.h"
+#include "SDL2/SDL.h"
 
 class Renderer : NonCopyable
 {
@@ -15,11 +12,11 @@ private:
 	SDL_Window* Window;
 	SDL_GLContext Context;
 
-	SpriteRenderer* SpriteRender;
-
-	std::queue<class Sprite*> SpriteRenderQueue;
+	SpriteRenderer* spriteRenderer;
 
 	Camera Camera;
+
+	RenderTarget* renderTarget;
 
 public:
 	Renderer();

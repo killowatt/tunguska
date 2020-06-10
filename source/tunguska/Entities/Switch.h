@@ -19,7 +19,7 @@ public:
 	Sprite Base;
 	Sprite Flicker;
 
-	void Initialize(ResourceManager* resourceManager);
+	void Initialize(ResourceManager* resourceManager) override;
 
 	void Update() override;
 	void Render(Renderer* renderer) override;

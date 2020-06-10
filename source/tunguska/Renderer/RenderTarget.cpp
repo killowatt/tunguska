@@ -4,6 +4,8 @@
 
 RenderTarget::RenderTarget()
 {
+	resolution = glm::uvec2(0, 0);
+
 	glGenFramebuffers(1, &FrameBuffer);
 	glBindFramebuffer(GL_FRAMEBUFFER, FrameBuffer);
 
@@ -27,10 +29,14 @@ RenderTarget::~RenderTarget()
 
 void RenderTarget::SetResolution(uint32 width, uint32 height)
 {
+	resolution = glm::uvec2(width, height);
+
 	glBindTexture(GL_TEXTURE_2D, ColorTexture);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0,
 		GL_RGB, GL_UNSIGNED_BYTE, nullptr);
 }
 
+glm::uvec2 RenderTarget::GetResolution() { return resolution; }
+
 uint32 RenderTarget::GetFramebufferObject() { return FrameBuffer; }
-uint32 RenderTarget::GetTextureObject() { return ColorTexture; }
+uint32 RenderTarget::GetTextureID() { return ColorTexture; }
