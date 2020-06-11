@@ -113,6 +113,7 @@ void SpriteRenderer::Render()
 		Sprite* sprite = &SpriteQueue.front();
 
 		SpriteShader->SetMatrix("model", sprite->GetTransform());
+		SpriteShader->SetFloat("opacity", sprite->Opacity);
 
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, sprite->Texture->GetTextureID());

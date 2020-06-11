@@ -7,6 +7,9 @@
     <Filter Include="Entities">
       <UniqueIdentifier>{f86e3e33-c45d-41de-95f6-40e7b141402c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{4c1e85ba-76d7-4b97-96a9-c9e79f28e29d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\tunguska\Collision.cpp" />
@@ -44,6 +47,9 @@
     <ClCompile Include="..\source\tunguska\Entities\Radar.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\tunguska\Game\ExteriorEntity.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\tunguska\Collision.h" />
@@ -79,6 +85,9 @@
     </ClInclude>
     <ClInclude Include="..\source\tunguska\Entities\Radar.h">
       <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\tunguska\Game\ExteriorEntity.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,9 +3,9 @@
 
 void Switch::Initialize(ResourceManager* resourceManager)
 {
-	SwitchBase = resourceManager->LoadTexture("switchbase2.png");
-	SwitchUp = resourceManager->LoadTexture("switchup2.png");
-	SwitchDown = resourceManager->LoadTexture("switchdown2.png");
+	SwitchBase = resourceManager->LoadTexture("switchbase.png");
+	SwitchUp = resourceManager->LoadTexture("switchup.png");
+	SwitchDown = resourceManager->LoadTexture("switchdown.png");
 
 	Bruh.Position = Position;
 	Bruh.Size = glm::vec2(7, 11);

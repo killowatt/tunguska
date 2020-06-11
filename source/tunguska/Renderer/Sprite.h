@@ -24,4 +24,6 @@ public:
 	int32 CurrentFrame;
 
 	class Texture* Texture;
+
+	float Opacity;
 };

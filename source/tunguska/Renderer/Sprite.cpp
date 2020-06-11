@@ -5,6 +5,8 @@ Sprite::Sprite()
 {
 	CurrentFrame = 0;
 	IsTransformDirty = true;
+
+	Opacity = 1.0f;
 }
 
 glm::mat4 Sprite::GetTransform()

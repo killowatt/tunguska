@@ -20,6 +20,8 @@ Texture* ResourceManager::LoadTexture(const char* fileName)
 {
 	Texture* texture = nullptr;
 
+	std::string combined = "data/" + std::string(fileName);
+
 	// TODO: handle err
 
 	if (Textures.find(fileName) == Textures.end())
@@ -27,7 +29,7 @@ Texture* ResourceManager::LoadTexture(const char* fileName)
 		texture = new Texture();
 
 		int width, height, channels;
-		unsigned char* pixels = stbi_load(fileName,
+		unsigned char* pixels = stbi_load(combined.c_str(),
 			&width, &height, &channels, STBI_rgb_alpha);
 
 		if (!pixels)
@@ -66,7 +68,7 @@ Shader* ResourceManager::LoadShader(const char* fileName)
 
 	if (Shaders.find(fileName) == Shaders.end())
 	{
-		std::string path = fileName;
+		std::string path = "data/" + std::string(fileName);
 		std::string vertexPath = path + ".vert";
 		std::string pixelPath = path + ".frag";
 

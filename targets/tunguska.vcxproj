@@ -17,6 +17,7 @@
     <ClCompile Include="..\source\tunguska\Entities\Switch.cpp" />
     <ClCompile Include="..\source\tunguska\Entity.cpp" />
     <ClCompile Include="..\source\tunguska\Game.cpp" />
+    <ClCompile Include="..\source\tunguska\Game\ExteriorEntity.cpp" />
     <ClCompile Include="..\source\tunguska\Input.cpp" />
     <ClCompile Include="..\source\tunguska\Main.cpp" />
     <ClCompile Include="..\source\tunguska\Renderer\Camera.cpp" />
@@ -36,6 +37,7 @@
     <ClInclude Include="..\source\tunguska\Entities\Switch.h" />
     <ClInclude Include="..\source\tunguska\Entity.h" />
     <ClInclude Include="..\source\tunguska\Game.h" />
+    <ClInclude Include="..\source\tunguska\Game\ExteriorEntity.h" />
     <ClInclude Include="..\source\tunguska\Input.h" />
     <ClInclude Include="..\source\tunguska\Renderer\Camera.h" />
     <ClInclude Include="..\source\tunguska\Renderer\Renderer.h" />
